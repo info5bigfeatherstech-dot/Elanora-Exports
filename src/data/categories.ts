@@ -1,5 +1,7 @@
+import { ProductCategory } from '../types';
+
 export interface CategoryMetadata {
-  id: 'knitwear-sweaters' | 'loungewear-sleepwear' | 'activewear-athleisure' | 'outerwear-layering';
+  id: ProductCategory;
   number: string;
   name: string;
   shortTitle: string;
@@ -69,5 +71,47 @@ export const CATEGORIES: CategoryMetadata[] = [
     typicalMOQ: '400 pcs/style (200 pcs/color)',
     leadTime: '8 to 10 weeks ex-factory',
     primaryFabrics: ['Double-Faced Wool Blend 580 GSM', 'Crisp Cotton Gabardine', 'Virgin Wool Twill', 'Structured Linen Blend'],
+  },
+  {
+    id: 'resort-wear',
+    number: '05',
+    name: 'Women’s Resort Wear',
+    shortTitle: 'Resort Wear',
+    tagline: 'Luxury Bikinis, High-Waisted Panties, Crochet Beach Cover-ups & Linen Sets',
+    description: 'Engineered for international resort boutiques, coastal beach clubs, and vacation collections. Premium chlorine-resistant stretch swim lycra, seamless cheekies, triangle bikini sets, and airy European linen kaftans.',
+    subcategories: ['Ribbed Bikini Sets', 'Cheeky Panties & Briefs', 'Linen Beach Kaftans', 'Crochet Beach Cover-ups', 'Vacation Resort Co-ords'],
+    bannerImage: '/images/products/bikini-ribbed-triangle.jpg',
+    featuredStyleCode: 'ELA-RW-201',
+    typicalMOQ: '400 pcs/style (200 pcs/color)',
+    leadTime: '5 to 7 weeks ex-factory',
+    primaryFabrics: ['Recycled ECONYL® Swim Lycra 220 GSM', 'UPF 50+ Ribbed Polyamide', '100% Belgian Washed Linen', 'Open Crochet Cotton Knit'],
+  },
+  {
+    id: 'boutique-apparel',
+    number: '06',
+    name: 'Boutique Apparel',
+    shortTitle: 'Boutique',
+    tagline: 'Artisanal Tailored Sets, Signature Poplin Blouses & Limited Edition Separates',
+    description: 'Curated wholesale silhouettes designed specifically for independent multi-brand boutiques and luxury concept stores. Low minimum runs with elevated trims, horn buttons, and french seam finishes.',
+    subcategories: ['Artisan Co-ord Sets', 'Pleated Boutique Shorts', 'Structured Linen Vests', 'Oversized Poplin Blouses', 'Bespoke Evening Separates'],
+    bannerImage: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80',
+    featuredStyleCode: 'ELA-BT-301',
+    typicalMOQ: '300 pcs/style (150 pcs/color)',
+    leadTime: '6 to 8 weeks ex-factory',
+    primaryFabrics: ['High-Twist Silk-Linen Blend', 'Supima Organic Poplin 140 GSM', 'Fine Cupro Twill', 'Textured Tencel Gabardine'],
+  },
+  {
+    id: 'ladies-dresses',
+    number: '07',
+    name: 'Ladies Dresses',
+    shortTitle: 'Dresses',
+    tagline: 'Bias-Cut Silk Slips, Tiered Summer Maxis & Architectural Cocktail Dresses',
+    description: 'Full-package dress manufacturing spanning fluid evening wear to effortless daywear. Precision bias draping, concealed side zippers, internal bra boning, and custom placement prints.',
+    subcategories: ['Bias-Cut Slip Dresses', 'Tiered Linen Maxi Dresses', 'Pleated Shirt Dresses', 'Cutout Evening Gowns', 'Wrap Midi Dresses'],
+    bannerImage: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1200&q=80',
+    featuredStyleCode: 'ELA-DR-401',
+    typicalMOQ: '400 pcs/style (200 pcs/color)',
+    leadTime: '6 to 8 weeks ex-factory',
+    primaryFabrics: ['19mm Sandwashed Silk Charmeuse', 'GOTS Organic Linen 180 GSM', 'Pleated Poly Georgette', 'Double Knit Modal Rib'],
   },
 ];

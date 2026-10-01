@@ -2,7 +2,10 @@ export type ProductCategory =
   | 'knitwear-sweaters'
   | 'loungewear-sleepwear'
   | 'activewear-athleisure'
-  | 'outerwear-layering';
+  | 'outerwear-layering'
+  | 'resort-wear'
+  | 'boutique-apparel'
+  | 'ladies-dresses';
 
 export interface PriceTier {
   minQty: number;

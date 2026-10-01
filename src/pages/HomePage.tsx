@@ -18,7 +18,18 @@ export const HomePage: React.FC = () => {
   const [activeLookbookSlide, setActiveLookbookSlide] = useState(0);
   const [activeHotspot, setActiveHotspot] = useState<string | null>(null);
 
+  // New Release Categories Filter state (Resort Wear, Boutique Apparel, Ladies Dresses)
+  const [activeNewReleaseTab, setActiveNewReleaseTab] = useState<'all' | 'resort-wear' | 'boutique-apparel' | 'ladies-dresses'>('all');
+
   const featuredStyles = PRODUCTS.filter((p) => p.isFeatured);
+
+  const newReleaseProducts = PRODUCTS.filter((p) =>
+    ['resort-wear', 'boutique-apparel', 'ladies-dresses'].includes(p.category)
+  );
+
+  const displayedNewProducts = activeNewReleaseTab === 'all'
+    ? newReleaseProducts
+    : newReleaseProducts.filter((p) => p.category === activeNewReleaseTab);
 
   const nextTestimonial = () => {
     setActiveTestimonial((prev) => (prev + 1) % TESTIMONIALS.length);
@@ -129,6 +140,12 @@ export const HomePage: React.FC = () => {
               <span>•</span>
               <span>TAILORED OUTERWEAR & SUITING</span>
               <span>•</span>
+              <span>WOMEN’S RESORT & BEACHWEAR</span>
+              <span>•</span>
+              <span>BOUTIQUE APPAREL & CO-ORDS</span>
+              <span>•</span>
+              <span>LADIES DRESSES & SILK SLIPS</span>
+              <span>•</span>
               <span>ZERO LIQUID DISCHARGE DYEING</span>
               <span>•</span>
               <span>PRIVATE LABEL OEM/ODM EXPORT</span>
@@ -165,7 +182,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ============================================================ */}
-      {/* 04 FOUR CATEGORY PANELS (Hover Image Reveal Grid) */}
+      {/* 04 WHOLESALE MANUFACTURING DIVISIONS (All Categories Grid) */}
       {/* ============================================================ */}
       <section className="hairline-b bg-bone">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-16">
@@ -180,18 +197,18 @@ export const HomePage: React.FC = () => {
               to="/collections"
               className="editorial-link-brass text-xs uppercase tracking-widest font-semibold text-ink flex items-center gap-1.5"
             >
-              <span>View 32 Export Styles</span>
+              <span>View All Export Styles ({PRODUCTS.length})</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          {/* 4 Large Panels */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 hairline divide-y lg:divide-y-0 lg:divide-x divide-stone mt-8">
+          {/* Manufacturing Divisions Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
             {CATEGORIES.map((cat) => (
               <Link
                 key={cat.id}
                 to={`/collections/${cat.id}`}
-                className="group relative flex flex-col justify-between p-8 bg-bone hover:bg-ink transition-colors duration-500 overflow-hidden"
+                className="group relative flex flex-col justify-between p-8 bg-bone border border-stone/80 hover:border-ink hover:bg-ink transition-colors duration-500 overflow-hidden"
               >
                 {/* Background image reveal on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none">
@@ -266,7 +283,7 @@ export const HomePage: React.FC = () => {
                 to="/collections"
                 className="px-4 py-2 border border-ink text-ink hover:bg-ink hover:text-bone transition-colors text-xs uppercase tracking-wider font-semibold"
               >
-                View Full Line (32)
+                View Full Line ({PRODUCTS.length})
               </Link>
             </div>
           </div>
@@ -502,7 +519,209 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
- 
+      {/* ============================================================ */}
+      {/* 10 NEW CAPSULE: RESORT WEAR, BOUTIQUE APPAREL & LADIES DRESSES */}
+      {/* ============================================================ */}
+      <section className="hairline-b bg-bone py-20">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+          
+          {/* Section Header */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 hairline-b">
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <span className="label-caps text-brass">10 / New Seasonal Capsule</span>
+                <span className="h-px w-8 bg-brass"></span>
+                <span className="font-mono text-[11px] text-ink bg-stone/40 px-2.5 py-0.5 uppercase tracking-wider">
+                  SS 26 & Resort 26
+                </span>
+              </div>
+              <h2 className="font-serif text-3xl sm:text-5xl text-ink font-normal tracking-tight">
+                Women’s Resort Wear, Boutique Apparel & Ladies Dresses
+              </h2>
+              <p className="text-sm text-warmgrey-dark max-w-3xl leading-relaxed pt-1">
+                Specialized production runs engineered for coastal resorts, independent concept boutiques, and international retail brands. Featuring Italian ribbed swim lycra bikinis, high-waisted seamless panties, Belgian linen beach kaftans, open crochet cover-up dresses, artisan tailored co-ords, and 19mm sandwashed Mulberry silk bias slips.
+              </p>
+            </div>
+
+            {/* Quick stats / terms */}
+            <div className="flex items-center gap-6 text-xs font-mono text-warmgrey shrink-0">
+              <div>
+                <span className="block text-[10px] text-brass uppercase">Production MOQ</span>
+                <span className="text-ink font-medium">From 300 pcs/style</span>
+              </div>
+              <div className="h-8 w-px bg-stone"></div>
+              <div>
+                <span className="block text-[10px] text-brass uppercase">Export Terms</span>
+                <span className="text-ink font-medium">FOB / CIF / DDP</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 3 Featured Category Visual Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
+            {/* Women's Resort Wear Card */}
+            <div className="relative group overflow-hidden border border-stone bg-stone/20 aspect-[4/3] flex flex-col justify-end p-6">
+              <img
+                src="/images/products/bikini-ribbed-triangle.jpg"
+                alt="Women's Resort Wear - Bikinis, Panties & Beachwear"
+                className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/40 to-transparent"></div>
+              <div className="relative z-10 text-bone space-y-2">
+                <span className="label-caps text-brass">Division 05</span>
+                <h3 className="font-serif text-2xl font-normal text-bone">Women’s Resort Wear</h3>
+                <p className="text-xs text-stone line-clamp-2">
+                  Ribbed triangle bikinis, high-waist swim panties, pure Belgian linen beach kaftans, and artisan crochet cover-ups.
+                </p>
+                <div className="pt-2 flex items-center justify-between">
+                  <Link
+                    to="/collections/resort-wear"
+                    className="text-xs uppercase tracking-widest text-brass hover:text-white font-semibold flex items-center gap-1.5 transition-colors"
+                  >
+                    <span>Explore Resort Line</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <span className="font-mono text-[11px] text-stone">4 Styles</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Boutique Apparel Card */}
+            <div className="relative group overflow-hidden border border-stone bg-stone/20 aspect-[4/3] flex flex-col justify-end p-6">
+              <img
+                src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1000&q=80"
+                alt="Boutique Apparel & Tailored Sets"
+                className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/40 to-transparent"></div>
+              <div className="relative z-10 text-bone space-y-2">
+                <span className="label-caps text-brass">Division 06</span>
+                <h3 className="font-serif text-2xl font-normal text-bone">Boutique Apparel</h3>
+                <p className="text-xs text-stone line-clamp-2">
+                  Tailored linen waistcoats, pleated shorts co-ords, fluid cupro trousers, and silk-cotton utility trench blouses.
+                </p>
+                <div className="pt-2 flex items-center justify-between">
+                  <Link
+                    to="/collections/boutique-apparel"
+                    className="text-xs uppercase tracking-widest text-brass hover:text-white font-semibold flex items-center gap-1.5 transition-colors"
+                  >
+                    <span>Explore Boutique Line</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <span className="font-mono text-[11px] text-stone">3 Styles</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Ladies Dresses Card */}
+            <div className="relative group overflow-hidden border border-stone bg-stone/20 aspect-[4/3] flex flex-col justify-end p-6">
+              <img
+                src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1000&q=80"
+                alt="Ladies Dresses & Silk Slips"
+                className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/40 to-transparent"></div>
+              <div className="relative z-10 text-bone space-y-2">
+                <span className="label-caps text-brass">Division 07</span>
+                <h3 className="font-serif text-2xl font-normal text-bone">Ladies Dresses</h3>
+                <p className="text-xs text-stone line-clamp-2">
+                  Heavyweight 19mm sandwashed silk bias slips, tiered organic linen maxis, and modern architectural cut-out midis.
+                </p>
+                <div className="pt-2 flex items-center justify-between">
+                  <Link
+                    to="/collections/ladies-dresses"
+                    className="text-xs uppercase tracking-widest text-brass hover:text-white font-semibold flex items-center gap-1.5 transition-colors"
+                  >
+                    <span>Explore Dresses Line</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <span className="font-mono text-[11px] text-stone">3 Styles</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive Category Filter Tabs */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 pt-4 hairline-b">
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                onClick={() => setActiveNewReleaseTab('all')}
+                className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  activeNewReleaseTab === 'all'
+                    ? 'bg-ink text-bone'
+                    : 'bg-stone/20 text-ink hover:bg-stone/40'
+                }`}
+              >
+                All Capsule Styles ({newReleaseProducts.length})
+              </button>
+              <button
+                onClick={() => setActiveNewReleaseTab('resort-wear')}
+                className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  activeNewReleaseTab === 'resort-wear'
+                    ? 'bg-ink text-bone'
+                    : 'bg-stone/20 text-ink hover:bg-stone/40'
+                }`}
+              >
+                Women’s Resort Wear (Bikinis, Panties & Beach Clothes)
+              </button>
+              <button
+                onClick={() => setActiveNewReleaseTab('boutique-apparel')}
+                className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  activeNewReleaseTab === 'boutique-apparel'
+                    ? 'bg-ink text-bone'
+                    : 'bg-stone/20 text-ink hover:bg-stone/40'
+                }`}
+              >
+                Boutique Apparel
+              </button>
+              <button
+                onClick={() => setActiveNewReleaseTab('ladies-dresses')}
+                className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${
+                  activeNewReleaseTab === 'ladies-dresses'
+                    ? 'bg-ink text-bone'
+                    : 'bg-stone/20 text-ink hover:bg-stone/40'
+                }`}
+              >
+                Ladies Dresses
+              </button>
+            </div>
+
+            <span className="font-mono text-xs text-warmgrey">
+              SHOWING {displayedNewProducts.length} EXPORT STYLES
+            </span>
+          </div>
+
+          {/* Products Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
+            {displayedNewProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+          {/* Bottom Link Bar */}
+          <div className="mt-12 pt-8 hairline-t flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-warmgrey">
+              All styles are fully customizable with private label branding, custom Pantone dyeing, and buyer-specified size ratios.
+            </p>
+            <div className="flex items-center gap-3">
+              <Link
+                to="/collections"
+                className="px-6 py-3 border border-ink text-ink hover:bg-ink hover:text-bone transition-colors text-xs uppercase tracking-widest font-semibold"
+              >
+                View Full Catalogue
+              </Link>
+              <Link
+                to="/quote-request"
+                className="px-6 py-3 bg-oxblood text-bone hover:bg-oxblood-dark transition-colors text-xs uppercase tracking-widest font-semibold flex items-center gap-2"
+              >
+                <span>Request Capsule Quote</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
       {/* ============================================================ */}
       {/* 12 MARKETS SERVED (3D Global Logistics Hub) */}

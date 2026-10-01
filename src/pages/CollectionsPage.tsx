@@ -28,6 +28,8 @@ export const CollectionsPage: React.FC = () => {
       if (p.fabric.includes('Merino')) list.add('Merino Wool');
       if (p.fabric.includes('Silk')) list.add('Mulberry Silk');
       if (p.fabric.includes('Cotton')) list.add('Organic Cotton');
+      if (p.fabric.includes('Linen')) list.add('Belgian Linen');
+      if (p.fabric.includes('Swim') || p.fabric.includes('ECONYL')) list.add('ECONYL® Swim Lycra');
       if (p.fabric.includes('Cupro')) list.add('Cupro');
       if (p.fabric.includes('Modal')) list.add('Modal');
       if (p.fabric.includes('Interlock') || p.fabric.includes('Polyamide')) list.add('Technical Interlock');
@@ -45,9 +47,20 @@ export const CollectionsPage: React.FC = () => {
     }
 
     if (selectedFabric !== 'all') {
-      result = result.filter((p) =>
-        p.fabric.toLowerCase().includes(selectedFabric.toLowerCase())
-      );
+      const kw = selectedFabric.toLowerCase();
+      result = result.filter((p) => {
+        const pf = p.fabric.toLowerCase();
+        if (kw.includes('linen')) return pf.includes('linen');
+        if (kw.includes('swim')) return pf.includes('swim') || pf.includes('econyl');
+        if (kw.includes('silk')) return pf.includes('silk');
+        if (kw.includes('merino')) return pf.includes('merino');
+        if (kw.includes('cotton')) return pf.includes('cotton');
+        if (kw.includes('cupro')) return pf.includes('cupro');
+        if (kw.includes('modal')) return pf.includes('modal');
+        if (kw.includes('interlock')) return pf.includes('interlock') || pf.includes('polyamide');
+        if (kw.includes('wool')) return pf.includes('wool') || pf.includes('gabardine');
+        return pf.includes(kw);
+      });
     }
 
     if (selectedSeason !== 'all') {
